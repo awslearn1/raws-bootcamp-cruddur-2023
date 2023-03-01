@@ -29,7 +29,7 @@ provider = TracerProvider()
 processor = BatchSpanProcessor(OTLPSpanExporter())
 provider.add_span_processor(processor)
 
-# Honeycomb - Show spans in console standard output
+# Honeycomb - Show spans in the backend flask in the console standard output
 simple_processor = SimpleSpanProcessor(ConsoleSpanExporter())
 provider.add_span_processor(simple_processor)
 
