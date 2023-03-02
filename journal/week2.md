@@ -16,9 +16,9 @@ went over the videos again, compared them to my notes, and finally executed all 
 
 - **1. Week 2 - AWS Cloud Project Bootcamp - Distributed Tracing**
 
-      - While watchingFollowed instructions from the videos to set up Honeycomb distributed tracing., after 
-
      - **Images**
+
+     - [video 1](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md)
 
 
 - Github - AWS X-Ray SDK Python
