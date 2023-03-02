@@ -18,7 +18,7 @@ went over the videos again, compared them to my notes, and finally executed all 
 
      - **Images**
 
-     - [video 1](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md)
+        - [video 1](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md)
 
 
 - Github - AWS X-Ray SDK Python
