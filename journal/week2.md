@@ -16,14 +16,14 @@ went over the videos again, compared them to my notes, and finally executed all 
 
 ## Videos
 
-- ### 1. Week 2 - AWS Cloud Project Bootcamp - Distributed Tracing
+### 1. Week 2 - AWS Cloud Project Bootcamp - Distributed Tracing
 
 Logged into honeycomb.io to get the API_KEYIn the instructions, Andrew
 
+**Images**
 
 
-
-     - **Images**
+     - 
 
         - [1-honeycomb-setup](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md)
 
