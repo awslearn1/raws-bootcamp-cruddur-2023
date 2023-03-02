@@ -14,7 +14,7 @@ went over the videos again, compared them to my notes, and finally executed all 
 
 ## Videos
 
-- **1. Week 2 - AWS Cloud Project Bootcamp - Distributed Tracing**
+- ### 1. Week 2 - AWS Cloud Project Bootcamp - Distributed Tracing
 
      - **Images**
 
