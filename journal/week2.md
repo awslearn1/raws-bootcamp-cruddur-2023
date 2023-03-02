@@ -15,7 +15,7 @@ went over the videos again, compared them to my notes, and finally executed all 
 
 ## Videos
 
-### 1. [Week 2 - AWS Cloud Project Bootcamp - Distributed Tracing](https://www.youtube.com/watch?v=2GD9xCzRId4)
+### 1. [Week 2 - AWS Cloud Project Bootcamp - Distributed Tracing - honeycomb.io set up](https://www.youtube.com/watch?v=2GD9xCzRId4)
 
 **Honeycomb** is an opentelemetry standard service. By integrating Honeycomb into our application, we can observe and improve our code by tracing (monitor and analyze the behavior and performance of a system) issues that may occur while ruuning the application. It supports a wide range of data sources, including logs, metrics, and traces, and provides powerful visualization and analysis tools for exploring and understanding this data. 
 
@@ -295,13 +295,46 @@ class HomeActivities:
 - [5-honeycomb-app-result_length]()
 
         
+### 2. [Week 2 Instrument XRay](https://www.youtube.com/watch?v=n2DTsuBrD_A)
+        
+**AWS Xray** is similar to Honeycomb. It uses distributed tracing to your applications in order for you to gain insights on latency and performance of your applications. 
+     
+ **1.** Installing AWS X-RAY SDK to the backend-end flask
+ 
+ - From root directory, cd to backend-flask and add this to the requirents.txt file (installing dependencies)
 
-        
+aws-xray-sdk
 
+then run
+
+pip install -r requirements.txt
+
+ 
+ Adding Requirements    
+     
+     
+     
+     
         
-        
-        
-        
+ 
+ ### 3. [Week 2 CloudWatch Logs](https://www.youtube.com/watch?v=ipdFizZjOF4)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ### 4. [Week 2 - Rollbar](https://www.youtube.com/watch?v=xMBDAb5SEU4)
+ 
+ 
+ 
+      
+      
+      
+      
 
 
 - Github - AWS X-Ray SDK Python
