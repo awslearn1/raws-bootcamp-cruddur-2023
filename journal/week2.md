@@ -12,7 +12,6 @@ Did commit them to GitHub as and when neccessary.
 Followed instructions from https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md, watched videos, took notes carefully on the notepad,
 went over the videos again, compared them to my notes, and finally executed all the tasks step-wise.
 
-[1-honeycomb-setup](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md)
 
 ## Videos
 
