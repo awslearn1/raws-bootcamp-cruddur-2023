@@ -1,8 +1,8 @@
 # Week 2 — Distributed Tracing
 
-For this week 2 also, I have decided to **put the code for the homework tasks in the journal**, but write down and document how I completed all the tasks watching Andrew's Videos 2-3x.
+For this week 2, I have decided to **put the code for the homework tasks in the journal**, and write down and document how I completed all the tasks watching Andrew's Videos 2-3x.
 
-But I wrote down code for each task on the notepad, and went over the videos again to check and then executed them.
+I wrote down code for each task on the notepad, and went over the videos again to check and then executed them.
 
 Did commit them to GitHub as and when neccessary.
 
