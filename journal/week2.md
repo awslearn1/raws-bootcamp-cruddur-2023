@@ -37,8 +37,246 @@ gp env HONEYCOMB_API_KEY=<"API KEY">
 env | grep HONEY
 ```
 
+-  Jessica advised not to set honeycomb service name globally, instead to set it up for each service in docker-compose file. If you need to unset the service name,
+
+run this command
+
+```
+unset SERVICE_NAME
+```
  
-Logged into honeycomb.io to get the API_KEYIn the instructions, Andrew
+**3.**  OTEL (open telemetry) variables were added to docker compose for back-end service
+
+OpenTelemetry (OTEL) is an open source observability framework that assist in generating and capturing telemetry data and send it honeycomb.io
+
+Add the following to the docker compose file for back-end service
+
+```
+OTEL_SERVICE_NAME: 'backend-flask'
+OTEL_EXPORTER_OTLP_ENDPOINT: "https://api.honeycomb.io"
+OTEL_EXPORTER_OTLP_HEADERS: "x-honeycomb-team=${HONEYCOMB_API_KEY}"
+```
+
+**4.** Add open telemetry libraries (packages) to requirements.txt to ensure that these packages are installed when deploying the application, and the backend application will have the necessary instrumentation to generate and export telemetry data to a tracing and monitoring backend service like Honeycomb.io
+
+```
+opentelemetry-api 
+opentelemetry-sdk 
+opentelemetry-exporter-otlp-proto-http 
+opentelemetry-instrumentation-flask 
+opentelemetry-instrumentation-requests
+```
+
+- cd into backend-flask and run the command
+
+```
+pip install opentelemetry-api 
+```
+
+```
+pip install -r requirements.txt
+```
+
+**5.** Importing required modules from the opentelemetry package for tracing and instrumentation. 
+
+```
+# Honeycomb -------
+from opentelemetry import trace
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
+from opentelemetry.instrumentation.requests import RequestsInstrumentor
+from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProcessor
+
+
+# Honeycomb -------
+# Honeycomb - Initialize tracing and an exporter that can send data to Honeycomb
+provider = TracerProvider()
+processor = BatchSpanProcessor(OTLPSpanExporter())
+provider.add_span_processor(processor)
+
+# Honeycomb - Show spans in console standard output
+simple_processor = SimpleSpanProcessor(ConsoleSpanExporter())
+provider.add_span_processor(simple_processor)
+
+
+trace.set_tracer_provider(provider)
+tracer = trace.get_tracer(__name__)
+
+
+# Create a flask and initialize automatic instrumentation with Flask
+app = Flask(__name__)
+FlaskInstrumentor().instrument_app(app)
+RequestsInstrumentor().instrument()
+```
+
+
+
+[commit link]() shows adding the instrument honeycomb to app.py
+
+
+- git commit -m "instrument honeycomb"
+
+- git push 
+
+**6.** cd ../front-end
+
+```
+npm i
+```
+
+**7.** from root directory 
+
+```
+docker compose up
+```
+
+
+**8.** Update **.gitpod.yml** file to open ports
+
+```
+ports:
+  - name: frontend
+    port: 3000
+    onOpen: open-browser
+    visibility: public
+  - name: backend
+    port: 4567
+    visibility: public
+  - name: xray-daemon
+    port: 2000
+    visibility: public
+```
+
+- git commit -m "adding ports to .gitpod.yml"
+
+- git push 
+
+
+- from backend URL, you will see this Raw Data
+
+```
+[
+  {
+    "created_at": "2023-02-27T22:15:03.577610+00:00",
+    "expires_at": "2023-03-06T22:15:03.577610+00:00",
+    "handle": "andrew Brown",
+    "likes_count": 5,
+    "message": "cloud is very fun!",
+    "replies": [
+      {
+        "created_at": "2023-02-27T22:15:03.577610+00:00",
+        "handle": "worf",
+        "likes_count": 0,
+        "message": "this post has no honor!",
+        "replies_count": 0,
+        "reply_to_activity_uuid": "68f126b0-1ceb-4a33-88be-d90fa7109eee",
+        "reposts_count": 0,
+        "uuid": "26e12864-1c26-5c3a-9658-97a10f8fea67"
+      }
+    ],
+    "replies_count": 1,
+    "reposts_count": 0,
+    "uuid": "68f126b0-1ceb-4a33-88be-d90fa7109eee"
+  },
+  {
+    "created_at": "2023-02-22T22:15:03.577610+00:00",
+    "expires_at": "2023-03-10T22:15:03.577610+00:00",
+    "handle": "worf",
+    "likes": 0,
+    "message": "i am out of prune juice",
+    "replies": [],
+    "uuid": "66e12864-8c26-4c3a-9658-95a10f8fea67"
+  },
+  {
+    "created_at": "2023-03-01T21:15:03.577610+00:00",
+    "expires_at": "2023-03-02T10:15:03.577610+00:00",
+    "handle": "garek",
+    "likes": 0,
+    "message": "my dear doctor, I am just simple tailor",
+    "replies": [],
+    "uuid": "248959df-3079-4947-b847-9e0892d1bab4"
+  }
+]
+```
+
+
+**9.** Create a custom span, added a tracer for this new span for **home activities** as per [HoneyComb documentation](https://docs.honeycomb.io/getting-data-in/opentelemetry/python/)
+
+- check to see your API Key
+
+```
+env|grep HONEY
+```
+
+- update - backend-flask/services/home_activities.py, with setting an attribute
+
+- code demonstrates how OpenTelemetry can be used to trace and monitor a specific operation within an application by creating and updating spans with attributes and events
+
+```
+from opentelemetry import trace
+
+tracer = trace.get_tracer("home.activities")
+
+with tracer.start_as_current_span("home-activities-mock-data"):
+      span = trace.get_current_span()
+      now = datetime.now(timezone.utc).astimezone()
+      span.set_attribute("app.now", now.isoformat())
+```
+
+
+- you will this Raw Data from the backend URL
+
+```
+class HomeActivities:
+  def run():
+    with tracer.start_as_current_span("home-activities-mock-data"):
+      span = trace.get_current_span()
+      now = datetime.now(timezone.utc).astimezone()
+      span.set_attribute("app.now", now.isoformat())
+      results = [{
+        'uuid': '68f126b0-1ceb-4a33-88be-d90fa7109eee',
+        'handle':  'andrew Brown',
+        'message': 'cloud is very fun!',
+        'created_at': (now - timedelta(days=2)).isoformat(),
+        'expires_at': (now + timedelta(days=5)).isoformat(),
+        'likes_count': 5,
+        'replies_count': 1,
+        'reposts_count': 0,
+        'replies': [{
+          'uuid': '26e12864-1c26-5c3a-9658-97a10f8fea67',
+          'reply_to_activity_uuid': '68f126b0-1ceb-4a33-88be-d90fa7109eee',
+          'handle':  'worf',
+          'message': 'this post has no honor!',
+          'likes_count': 0,
+          'replies_count': 0,
+          'reposts_count': 0,
+          'created_at': (now - timedelta(days=2)).isoformat()
+      }],
+    },
+    {
+      'uuid': '66e12864-8c26-4c3a-9658-95a10f8fea67',
+      'handle':  'worf',
+      'message': 'i am out of prune juice',
+      'created_at': (now - timedelta(days=7)).isoformat(),
+      'expires_at': (now + timedelta(days=9)).isoformat(),
+      'likes': 0,
+      'replies': []
+    },
+    {
+      'uuid': '248959df-3079-4947-b847-9e0892d1bab4',
+      'handle':  'garek',
+      'message': 'my dear doctor, I am just simple tailor',
+      'created_at': (now - timedelta(hours=1)).isoformat(),
+      'expires_at': (now + timedelta(hours=12)).isoformat(),
+      'likes': 0,
+      'replies': []
+    }
+    ]
+    span.set_attribute("app.result_length", len(results))    
+    return results
+```
 
 #### Images
 
