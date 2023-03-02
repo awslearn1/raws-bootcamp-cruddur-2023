@@ -7,12 +7,12 @@ But I wrote down code for each task on the notepad, and went over the videos aga
 Did commit them to GitHub as and when neccessary.
 
 
-## Homework Review
+# Homework Review
 
 Followed instructions from https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md, watched videos, took notes carefully on the notepad,
 went over the videos again, compared them to my notes, and finally executed all the tasks step-wise.
 
-### Videos
+## Videos
 
 - **1. Week 2 - AWS Cloud Project Bootcamp - Distributed Tracing**
 
