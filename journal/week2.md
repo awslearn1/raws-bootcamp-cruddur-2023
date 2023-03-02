@@ -15,7 +15,7 @@ went over the videos again, compared them to my notes, and finally executed all 
 
 ## Videos
 
-### 1. Week 2 - AWS Cloud Project Bootcamp - Distributed Tracing
+### 1. [Week 2 - AWS Cloud Project Bootcamp - Distributed Tracing](https://www.youtube.com/watch?v=2GD9xCzRId4)
 
 **Honeycomb** is an opentelemetry standard service. By integrating Honeycomb into our application, we can observe and improve our code by tracing (monitor and analyze the behavior and performance of a system) issues that may occur while ruuning the application. It supports a wide range of data sources, including logs, metrics, and traces, and provides powerful visualization and analysis tools for exploring and understanding this data. 
 
