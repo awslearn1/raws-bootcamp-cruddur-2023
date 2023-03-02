@@ -18,7 +18,15 @@ went over the videos again, compared them to my notes, and finally executed all 
 
      - **Images**
 
-        - [video 1](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md)
+        - [1-honeycomb-setup](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md)
+
+        - [2-honeycomb-span](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md)
+
+        - [3-honeycomb-trace](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md)
+
+        - [4-honeycomb-home-activities-mock-data-trace]()
+        
+        - [5-honeycomb-app-result_length]()
 
 
 - Github - AWS X-Ray SDK Python
