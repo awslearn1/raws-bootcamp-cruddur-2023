@@ -20,7 +20,7 @@ went over the videos again, compared them to my notes, and finally executed all 
 
 Logged into honeycomb.io to get the API_KEYIn the instructions, Andrew
 
-- [1-honeycomb-setup](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md)     
+
 
 
      - **Images**
