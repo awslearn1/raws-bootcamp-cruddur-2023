@@ -18,6 +18,26 @@ went over the videos again, compared them to my notes, and finally executed all 
 
 ### 1. Week 2 - AWS Cloud Project Bootcamp - Distributed Tracing
 
+Honeycomb is an opentelemetry standard service. By integrating Honeycomb into our application, we can observe and improve our code by tracing (monitor and analyze the behavior and performance of a system) issues that may occur while ruuning the application. It supports a wide range of data sources, including logs, metrics, and traces, and provides powerful visualization and analysis tools for exploring and understanding this data. 
+
+Traces are a way of tracking the flow of requests through a distributed system. A trace is essentially a record of the interactions between the different components of the system as the request is processed. It includes information about the timing and duration of each interaction, as well as any errors or exceptions that occurred along the way.
+
+- Created an anvironment for Cruddur in honeycomb.io to get the API_KEY
+
+- Setting environment variables for Gitpod with API Key for start up
+
+```
+export HONEYCOMB_API_KEY=<"API KEY">
+gp env HONEYCOMB_API_KEY=<"API KEY">
+```
+
+- Check if the environment variables have been set
+
+```
+env | grep HONEY
+```
+
+ 
 Logged into honeycomb.io to get the API_KEYIn the instructions, Andrew
 
 #### Images
