@@ -154,7 +154,7 @@ ports:
 - git push 
 
 
-- from backend URL, you will see this Raw Data
+- from backend URL, you will see this Raw Data, before you create a span
 
 ```
 [
@@ -226,7 +226,7 @@ with tracer.start_as_current_span("home-activities-mock-data"):
 ```
 
 
-- you will this Raw Data from the backend URL
+- you will this Raw Data from the backend URL after you create a span
 
 ```
 class HomeActivities:
@@ -277,6 +277,9 @@ class HomeActivities:
     span.set_attribute("app.result_length", len(results))    
     return results
 ```
+
+- Next I ran custom query grouped by trace.trace_id and chose a trace fron a span and see the expected results.
+
 
 #### Images
 
