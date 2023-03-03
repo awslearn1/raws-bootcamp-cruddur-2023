@@ -614,7 +614,7 @@ Add to backend-flask for docker-compose.yml
 
 ROLLBAR_ACCESS_TOKEN: "${ROLLBAR_ACCESS_TOKEN}"
 
-- sroll down, and grab the **<access token>**
+- sroll down, and grab the **access token**
 
 
       
