@@ -431,9 +431,12 @@ AWS_XRAY_DAEMON_ADDRESS: "xray-daemon:2000"
      
 **7.** ran docker compose up
 
-- evidenced in doscker container for X-Ray logs that segment was sent to X-Ray: olley
+- evidenced in docker container for X-Ray logs that segment was sent to X-Ray: olley
 
 - X-Ray trace appeared in AWS X-Ray console when clicked on Traces: nickda
+
+
+
 
 
  
