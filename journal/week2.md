@@ -475,7 +475,7 @@ AWS_XRAY_DAEMON_ADDRESS: "xray-daemon:2000"
 
 
  
- ### 3. Week 2 CloudWatch Logs
+### 3. Week 2 CloudWatch Logs
  
 **AWS Cloudwatch** logs our application's processes. In order for it to work with our application, we have to implemnt Watchtower. 
 
@@ -550,7 +550,7 @@ def run(logger):
 
 - [commit link]() for configuring cloudwatch logs
 
-**5. Set the env var in your backend-flask for docker-compose.yml
+**5. Set the env var in your backend-flask for docker-compose.yml**
 
 -  passing AWS_REGION doesn't seems to get picked up by boto3 so pass default region instead
 
@@ -568,21 +568,55 @@ def run(logger):
 docker compose up
 ```
 
-**7. 
-   
-    
-   
 
+### 4. [Week 2 - Rollbar](https://www.youtube.com/watch?v=xMBDAb5SEU4)
+
+**Rollbar** is an Error logging and tracking service, allows us to track bugs and monitor for solutions on our systems. 
+
+is an Error logging and tracking service for developers. It allows us to track bugs and monitor for solutions on our systems. If you haven't already make sure to create a Rollbar account in order for you to actually use the service and integrate it into your application. Once signed in, you will be required to choose the framework you are utilizing define your backend. In this instance, you will select 'flask'. Once you've done so it will being you to an instructions page which has steps and sub-steps you need to take in order to integrate Rollbar. However, before we do any of that there are a few things we 'require' in order to get this going.
+
+- [Login](https://rollbar.com/) to rollbar
+
+- Create a new project in Rollbar called Cruddur
  
  
- 
- 
- 
- 
- ### 4. [Week 2 - Rollbar](https://www.youtube.com/watch?v=xMBDAb5SEU4)
- 
- 
- 
+**1. Install rollbar and blnker**
+
+- add to backend-flask/requirements.txt
+
+
+```
+rollbar
+blinker
+```
+
+- OR
+
+```
+pip install rollbar
+pip install blinker
+```
+
+**2. Install dependencies**
+
+```
+pip install -r requirements.txt
+```
+
+**3. 
+
+We need to set our access token
+
+export ROLLBAR_ACCESS_TOKEN=""
+gp env ROLLBAR_ACCESS_TOKEN=""
+
+Add to backend-flask for docker-compose.yml
+
+ROLLBAR_ACCESS_TOKEN: "${ROLLBAR_ACCESS_TOKEN}"
+
+- sroll down, and grab the **<access token>**
+
+
       
       
       
