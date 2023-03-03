@@ -14,7 +14,7 @@ Followed instructions from https://github.com/omenking/aws-bootcamp-cruddur-2023
 
 ## Videos
 
-- 1. Watched [Week 2 -  AWS Cloud Project Bootcamp - Distributed Tracing - honeycomb.io set up](https://www.youtube.com/watch?v=2GD9xCzRId4)
+- **1.** Watched [Week 2 -  AWS Cloud Project Bootcamp - Distributed Tracing - honeycomb.io set up](https://www.youtube.com/watch?v=2GD9xCzRId4)
 
 - 2. Watched [Week 2 - Instrument XRay](https://www.youtube.com/watch?v=n2DTsuBrD_A)
 
