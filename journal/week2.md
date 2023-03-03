@@ -497,10 +497,13 @@ pip install -r requirements.txt
 
 **2. import the watchtower handler along with the following code**
 
--backend-flask/app.py - add
+- backend-flask/app.py - add
+
+ 
 
 ```
 # CloudWatch Logs -----
+# The strftime function is used to add timestamps to your log messages for easier analysis
 import watchtower
 import logging
 from time import strftime
@@ -508,6 +511,7 @@ from time import strftime
 
 # CloudWatch --------
 # Configuring Logger to Use CloudWatch
+# when executed crudder log message will be sent to Cloudwatch
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.DEBUG)
 console_handler = logging.StreamHandler()
@@ -524,11 +528,47 @@ def after_request(response):
     LOGGER.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
     return response
 
-
-
+# after - Cloudwatch    
+# Pass the LOGGER variable into HomeActivities class
+@app.route("/api/activities/home", methods=['GET'])
+def data_home():
+  data = HomeActivities.run(logger=LOGGER)
+  #LOGGER.info('Hello Cloudwatch! from  /api/activities/home')
+  return data, 200
 ```
 
+**4. Adding custom logging to home_activities.py in the backend-flask**
 
+- backend-flask/services/home_activities.py
+
+```
+def run(logger):
+  logger.info("HomeActivities")
+```
+
+- git commit -m "configuring cloudwatch logs"
+
+- [commit link]() for configuring cloudwatch logs
+
+**5. Set the env var in your backend-flask for docker-compose.yml
+
+-  passing AWS_REGION doesn't seems to get picked up by boto3 so pass default region instead
+
+- docker-compose.yml, add
+
+```
+      AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION}"
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+```
+
+**6.** run 
+
+```
+docker compose up
+```
+
+**7. 
    
     
    
