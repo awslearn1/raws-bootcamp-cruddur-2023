@@ -429,14 +429,26 @@ AWS_XRAY_DAEMON_ADDRESS: "xray-daemon:2000"
 
 [commit link]() shows adding the instrument x-ray to docker-compose.yml
      
-**7.** ran docker compose up
+**7.** ran docker compose up -d
 
-- evidenced in docker container for X-Ray logs that segment was sent to X-Ray: olley
+- Before you can see the x-ray trace 
 
-- X-Ray trace appeared in AWS X-Ray console when clicked on Traces: nickda
+- Connect to the Back-end URL from the Gitpod in the ports tab by appending /api/activities/home
+
+- take you to the API page that is hosting the backend for our home_activities.py
+
+- Refresh it few times
+
+- **then Go AWS Console, X-Ray > New Console > CloudWatch > Traces > Run Query**
+
+- X-Ray trace appeared in AWS X-Ray console 
+- 
+- PHOTO not taken
+
+- Click on a trace 
 
 
-
+- PHOTO not taken
 
 
  
