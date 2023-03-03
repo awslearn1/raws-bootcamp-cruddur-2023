@@ -454,8 +454,62 @@ AWS_XRAY_DAEMON_ADDRESS: "xray-daemon:2000"
  
  ### 3. [Week 2 CloudWatch Logs](https://www.youtube.com/watch?v=ipdFizZjOF4)
  
- 
- 
+**AWS Cloudwatch** logs our application's processes. In order for it to work with our application, we have to implemnt Watchtower. 
+
+**Watchtower** has libraries for python applications which provide a handler that can be used to log events in your Python code, and then send those logs to CloudWatch for storage, analysis, and visualization.
+
+**1.**  Install WatchTower 
+
+- in the backend-flask/requirements.txt, add
+
+```
+watchtower
+```
+
+- cd to backend-flask, run cli
+
+```
+pip install -r requirements.txt
+```
+
+**2.** import the watchtower handler along with the following code:
+
+-backend-flask/app.py - add
+
+```
+# CloudWatch Logs -----
+import watchtower
+import logging
+from time import strftime
+
+
+# CloudWatch --------
+# Configuring Logger to Use CloudWatch
+LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.DEBUG)
+console_handler = logging.StreamHandler()
+cw_handler = watchtower.CloudWatchLogHandler(log_group='cruddur')
+LOGGER.addHandler(console_handler)
+LOGGER.addHandler(cw_handler)
+LOGGER.info("cruddur log")
+
+
+# to collect logs for Cloudwatch errors 
+@app.after_request to collect logs for errors
+def after_request(response):
+    timestamp = strftime('[%Y-%b-%d %H:%M]')
+    LOGGER.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
+    return response
+
+
+
+```
+
+
+   
+    
+   
+
  
  
  
