@@ -298,24 +298,144 @@ class HomeActivities:
 ### 2. [Week 2 Instrument XRay](https://www.youtube.com/watch?v=n2DTsuBrD_A)
         
 **AWS Xray** is similar to Honeycomb. It uses distributed tracing to your applications in order for you to gain insights on latency and performance of your applications. 
-     
+
+- [Github - AWS X-Ray SDK Python](https://github.com/aws/aws-xray-sdk-python)
+
  **1.** Installing AWS X-RAY SDK to the backend-end flask
  
- - From root directory, cd to backend-flask and add this to the requirents.txt file (installing dependencies)
+ - From root directory, cd to backend-flask and add this to the requirents.txt file (to install python dependencies)
 
+```
 aws-xray-sdk
+```
 
-then run
+- then run from backend-flask
 
+```
 pip install -r requirements.txt
+```
 
- 
- Adding Requirements    
+**2.** Add to app.py
+
+- backend-flask/app.py
+
+```
+# import X-Ray modules for running the application
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+
+# configures the X-Ray SDK with the retrieved X-Ray URL for service "backend-flask"
+xray_url = os.getenv("AWS_XRAY_URL")
+xray_recorder.configure(service='backend-flask', dynamic_naming=xray_url)
+
+# Adding X-Ray middleware
+XRayMiddleware(app, xray_recorder)
+```
+
+**3.** Setup AWS X-Ray Resources - xray.json
      
+- aws/json/xray.json - Create a file xray.json 
+
+```
+{
+    "SamplingRule": {
+        "RuleName": "Cruddur",
+        "ResourceARN": "*",
+        "Priority": 9000,
+        "FixedRate": 0.1,
+        "ReservoirSize": 5,
+        "ServiceName": "backend-flask",
+        "ServiceType": "*",
+        "Host": "*",
+        "HTTPMethod": "*",
+        "URLPath": "*",
+        "Version": 1
+    }
+  }
+```
+
+**4.**. Configuring AWS X-Ray to create a group for the "Cruddur" and filtering traces for the "backend-flask" service 
+
+- from backend-flask, run cli command
+
+```
+aws xray create-group \
+   --group-name "Cruddur" \
+   --filter-expression "service(\"backend-flask\")"
+```
+
+- not used
+
+```
+FLASK_ADDRESS="https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}" 
+```    
+  
+- **Note: The X-Ray Trace Groups are under X-Ray > New Console > CloudWatch > Settings > Traces > View Settings > Groups**
+- 
+- PHOTO from AWS took it
+
+**5.** Configure the X-Ray sampling rules for the application with cli
+
+- run from aws/json
+
+```
+aws xray create-sampling-rule --cli-input-json file://xray.json
+```
+
+- OR
+
+```
+aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
+```
+
+- **Note: The Sampling rules are under CloudWatch > Settings > Traces > View Settings > Sampling rules**
+
+
+- PHOTO took
+
+
+
+**6.** Adding X-Ray Daemon Container to Docker Compose
+
+- need to set up a container to host the xray daemon that will be tracing our application
+
+- add to docker-compose.yml
+
+```
+# AWS X-Ray Daemon Container
+# https://hub.docker.com/r/amazon/aws-xray-daemon
+  xray-daemon:
+      image: "amazon/aws-xray-daemon"
+      environment:
+        AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+        AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+        AWS_REGION: ""us-east-1"
+      command:
+        - xray -o -b "xray-daemon:2000"
+      ports:
+        - 2000:2000/udp
+```
+
+- add these two env vars to our backend-flask in our docker-compose.yml file
+
+```
+AWS_XRAY_URL: "*4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}*"
+AWS_XRAY_DAEMON_ADDRESS: "xray-daemon:2000"
+```
+
+- git commit -m "instrument x-ray"
+
+- git push
+
+[commit link]() shows adding the instrument x-ray to docker-compose.yml
      
-     
-     
-        
+**7.** ran docker compose up
+
+- evidenced in doscker container for X-Ray logs that segment was sent to X-Ray: olley
+
+- X-Ray trace appeared in AWS X-Ray console when clicked on Traces: nickda
+
+
  
  ### 3. [Week 2 CloudWatch Logs](https://www.youtube.com/watch?v=ipdFizZjOF4)
  
@@ -337,7 +457,7 @@ pip install -r requirements.txt
       
 
 
-- Github - AWS X-Ray SDK Python
+
 
 
 
