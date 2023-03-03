@@ -14,23 +14,23 @@ Followed instructions from https://github.com/omenking/aws-bootcamp-cruddur-2023
 
 ## Videos
 
-- Watched [Week 2 -  AWS Cloud Project Bootcamp - Distributed Tracing - honeycomb.io set up](https://www.youtube.com/watch?v=2GD9xCzRId4)
+- [Week 2 -  AWS Cloud Project Bootcamp - Distributed Tracing - honeycomb.io set up](https://www.youtube.com/watch?v=2GD9xCzRId4)
 
-- Watched [Week 2 - Instrument XRay](https://www.youtube.com/watch?v=n2DTsuBrD_A)
+- [Week 2 - Instrument XRay](https://www.youtube.com/watch?v=n2DTsuBrD_A)
 
-- Watched [Week 2 - CloudWatch Logs](https://www.youtube.com/watch?v=ipdFizZjOF4)
+- [Week 2 - CloudWatch Logs](https://www.youtube.com/watch?v=ipdFizZjOF4)
 
-- Watched [Week 2 - Rollbar](https://www.youtube.com/watch?v=xMBDAb5SEU4)
+- [Week 2 - Rollbar](https://www.youtube.com/watch?v=xMBDAb5SEU4)
 
-- Watched [Week 2 - X-Ray Subsegments Solved](https://www.youtube.com/watch?v=4SGTW0Db5y0)
+- [Week 2 - X-Ray Subsegments Solved](https://www.youtube.com/watch?v=4SGTW0Db5y0)
 
-- Watched [Week 2 - Observability vs Monitoring Explained in AWS](https://www.youtube.com/watch?v=bOf4ITxAcXc&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=31)
+- [Week 2 - Observability vs Monitoring Explained in AWS](https://www.youtube.com/watch?v=bOf4ITxAcXc&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=31)
 
-- Watched [Week 2 - Pick the right cloud role: A beginners guide!](https://www.youtube.com/watch?v=E0haz6mymxY&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=35)
+- [Week 2 - Pick the right cloud role: A beginners guide!](https://www.youtube.com/watch?v=E0haz6mymxY&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=35)
 
-- Watched [Week 2 - Honeycomb, Rollbar, AWS X-Ray and AWS Cloudwatch Logs pricing considerations](https://www.youtube.com/watch?v=2W3KeqCjtDY&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=38)
+- [Week 2 - Honeycomb, Rollbar, AWS X-Ray and AWS Cloudwatch Logs pricing considerations](https://www.youtube.com/watch?v=2W3KeqCjtDY&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=38)
 
-- Watched [Week 2 - Github Codespaces Crash Course](https://www.youtube.com/watch?v=L9KKBXgKopA&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=36)
+- [Week 2 - Github Codespaces Crash Course](https://www.youtube.com/watch?v=L9KKBXgKopA&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=36)
 
 ### 1. Week 2 - AWS Cloud Project Bootcamp - Distributed Tracing - honeycomb.io set up
 
