@@ -1,3 +1,21 @@
+```
+# CloudWatch Logs -----
+# The strftime function is used to add timestamps to your log messages for easier analysis
+#import watchtower
+#import logging
+#from time import strftime
+
+
+******
+
+# CloudWatch Logs -----
+# The strftime function is used to add timestamps to your log messages for easier analysis
+#import watchtower
+#import logging
+#from time import strftime
+```
+
+
 # Week 2 — Distributed Tracing
 
 For this week 2, I have decided to **put the code for the homework tasks in the journal**, and write down and document how I completed all the tasks watching Andrew's Videos 2-3x.
