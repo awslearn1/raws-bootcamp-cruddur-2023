@@ -20,7 +20,6 @@ Videos.
 ## 1. Week 3 - AWS Cloud Project Bootcamp Decentralized Authenication -  Setup Cognito User Pool, Implement Custom Signin Page
 
 - Navigate to new Amazon Cognito in AWS
-
 - Click on create a new user pool
 
 ### step 1 of 6
