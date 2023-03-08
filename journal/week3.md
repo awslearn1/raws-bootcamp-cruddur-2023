@@ -1,11 +1,12 @@
 # Week 3 — Decentralized Authentication
 
-Decentralized authentication is a newer concept where users can gain access to online services using verifiable credentials. Say you wanted to access an online banking service. Instead of submitting ID documents, you could submit a Verifiable Credential from a government body to prove your identity.
-
-This removes the need for the bank to request and store your information before granting you access. And you won’t need an account to login in the future since the service provider can issue a Verifiable Credential for ongoing verification. Logging into the site would be as simple as connecting your digital wallet!
-
 Decentralized authentication is a method of authentication that relies on a distributed network of nodes or peers to verify user identities, rather than a centralized authority. Decentralized authentication systems are based on blockchain technology and provide greater security, privacy, and control to users over their personal information and online identities.
 
+Amazon Cognito provides authentication, authorization, and user management for your web and mobile apps. Your users can sign in directly with a user name and password, or through a third party social identity providers such as Facebook, Amazon, Google or Apple, as well as multi-factor authentication (MFA) and user sign-up and sign-in workflows.
+
+While Cognito is a centralized authentication service provided by a trusted third-party (AWS), it does offer some features that align with the principles of decentralized authentication. For example, it allows users to maintain control over their own identities and personal information by enabling them to sign in with their own social identity providers or use their own user directories.
+
+In addition, Cognito provides a feature called **user pools** that allows developers to create and manage their own user directories and authentication workflows. This can be seen as a step towards decentralization, as developers have more control over the authentication process and are not entirely reliant on a centralized authentication service.
 
 # Homework Review
 
@@ -20,6 +21,8 @@ Videos.
 - [Week 3 - Exploring JWTs](https://www.youtube.com/watch?v=nJjbI4BbasU&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=43)
 
 ## 1. Week 3 - AWS Cloud Project Bootcamp Decentralized Authenication -  Setup Cognito User Pool, Implement Custom Signin Page
+
+**1. Setup Cognito User Pool**
 
 - Navigate to new Amazon Cognito in AWS
 - Click on create a new user pool
@@ -71,6 +74,10 @@ Videos.
 ### step 6 of 6
 
 - Review and create - Create user pool
+
+**2. Install AWS Amplify**
+
+AWS Amplify is a development platform that helps developers build web and mobile applications using AWS services. Amplify provides a set of libraries, UI components, and tools that make it easier to integrate with AWS services, including Cognito for authentication. Thus developers can create applications that give users more control over their personal data and online identities, while still leveraging the power and scalability of AWS services.
 
 
 
