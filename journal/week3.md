@@ -28,7 +28,7 @@ Videos.
 
 - [Amazon Cognito user pools[(https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html)
 
-**1. Setup Cognito User Pool**
+### 1. Setup Cognito User Pool
 
 - Navigate to new Amazon Cognito in AWS
 - Click on create a new user pool
@@ -81,7 +81,7 @@ Videos.
 
 - Review and create - Create user pool
 
-**2. Install AWS Amplify**
+### 2. Install AWS Amplify
 
 **AWS Amplify** is a development platform that helps developers build web and mobile applications using AWS services. Amplify provides a set of libraries, UI components, and tools that make it easier to integrate with AWS services, including Cognito for authentication. Thus developers can create applications that give users more control over their personal data and online identities, while still leveraging the power and scalability of AWS services.
 
@@ -92,7 +92,7 @@ Videos.
 npm i aws-amplify --save
 ```
 
-**3. Configure Amplify**
+### 3. Configure Amplify
 
 - add these env variables to frontend-js service in docker-compose.yml
 
@@ -144,7 +144,7 @@ Amplify.configure({
 });
 ```
 
-**4. Conditionally show components based on logged in or logged out**
+### 4. Conditionally show components based on logged in or logged out
 
 **frontend-react-js/src/pages/HomeFeedPage.js**
 
