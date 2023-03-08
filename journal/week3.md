@@ -31,35 +31,35 @@ Videos.
 
 - Cognito user pool sign-in-options ===> username, email 
 
-- User name requirements --> leave blank
+- User name requirements ===> leave blank
 
 - next
 
 ### step 2 of 6
 
-- Password Policy --> Password policy mode --> Cognito defaults
+- Password Policy ===> Password policy mode ===> Cognito defaults
 
-- Multi-factor Authentication --> No MFA
+- Multi-factor Authentication ===> No MFA
 
-- User account recovery --> Enable self account recovery
+- User account recovery ===> Enable self account recovery
 
-- Delivey method for user account recovery messages --> Email only
+- Delivey method for user account recovery messages ===> Email only
 
 - next
 
 ### step 3 of 6
 
-- Configure sign-up experience --> self-service sign-up - check Enable self-registration 
+- Configure sign-up experience ===> self-service sign-up - check Enable self-registration 
 
-- Attribute verification and user account confirmation --> Cognito-assisted verfification and confirmation --> check Allow cognito to automatically send messages to verify and confirm 
+- Attribute verification and user account confirmation ===> Cognito-assisted verfification and confirmation ===> check Allow cognito to automatically send messages to verify and confirm 
 
-- Attributes to Verify --> Send email messages, verify email address
+- Attributes to Verify ===> Send email messages, verify email address
 
-- Veifying attribute changes --> check keep original attribute value when an update is pending 
+- Veifying attribute changes ===> check keep original attribute value when an update is pending 
 
-- Active attribute values when an update is pending --> email address
+- Active attribute values when an update is pending ===> email address
 
-- Required attributes --> Under Additional required attributes drop-down - select name 
+- Required attributes ===> Under Additional required attributes drop-down - select name 
 
 - next
 
@@ -67,11 +67,11 @@ Videos.
 
 ### step 4 of 6
 
-- Configure message delivery --> Email --> Email Provider --> checck Send email with cognito 
+- Configure message delivery ===> Email ===> Email Provider ===> checck Send email with cognito 
 
-- SES region --> set your aws region
+- SES region ===> set your aws region
 
-- From email address --> select --> no-reply@verificationemail.com
+- From email address ===> select ===> no-reply@verificationemail.com
 
 - Reply to email address leave blank
 
@@ -79,17 +79,15 @@ Videos.
 
 ### step 5 of 6
 
-- Integrate your app --> User pool name --> enter user pool name  - cruddur-user-pool
+- Integrate your app ===> User pool name ===> enter user pool name  - cruddur-user-pool
 
-- Hosted authentication pages --> 
+- Hosted authentication pages ===> Uncheck Use the Cognito Hosted UI 
 
-- Use the Cognoti Hosted UI - No, disable
+- Intial app client ===> App type ===> select --> Public client
 
-- Intial app client --> App type --> select --> Public client
+- App client name ===> enter name thats relevent to the project ===> cruddur
 
-- App client name --> enter name thats relevent to the project --> cruddur
-
-- Client secret --> select --> Dont generate a client secret
+- Client secret ===> select ===> Dont generate a client secret
 
 - Advanced app client setting leave as default
 
@@ -97,7 +95,7 @@ Videos.
 
 ### step 6 of 6
 
-- Review and create -  Create user pool
+- Review and create - Create user pool
 
 
 
