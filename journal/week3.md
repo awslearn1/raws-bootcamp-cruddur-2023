@@ -28,7 +28,7 @@ Videos.
 
 - Configure sign-in experience
 - Authentication Providers ===> Cognito user pool
-- Cognito user pool sign-in-options ===> username, email 
+- Cognito user pool sign-in-options ===> email 
 - User name requirements ===> leave blank
 - next
 
@@ -36,7 +36,7 @@ Videos.
 
 - Password Policy ===> Password policy mode ===> Cognito defaults
 - Multi-factor Authentication ===> No MFA
-- User account recovery ===> Enable self account recovery
+- User account recovery ===> Self-service account delivery ===> Enable self-service account delivery
 - Delivey method for user account recovery messages ===> Email only
 - next
 
@@ -45,9 +45,9 @@ Videos.
 - Configure sign-up experience ===> self-service sign-up - check Enable self-registration 
 - Attribute verification and user account confirmation ===> Cognito-assisted verfification and confirmation ===> check Allow cognito to automatically send messages to verify and confirm 
 - Attributes to Verify ===> Send email messages, verify email address
-- Veifying attribute changes ===> check keep original attribute value when an update is pending 
+- Veifying attribute changes ===> check keep original attribute value active when an update is pending 
 - Active attribute values when an update is pending ===> email address
-- Required attributes ===> Under Additional required attributes drop-down - select name 
+- Required attributes ===> Under Additional required attributes drop-down - select name, preferred_username
 - next
 
 ### step 4 of 6
@@ -62,9 +62,9 @@ Videos.
 
 - Integrate your app ===> User pool name ===> enter user pool name  - cruddur-user-pool
 - Hosted authentication pages ===> Uncheck Use the Cognito Hosted UI 
-- Intial app client ===> App type ===> select --> Public client
+- Intial app client ===> App type ===> select Public client
 - App client name ===> enter name thats relevent to the project ===> cruddur
-- Client secret ===> select ===> Dont generate a client secret
+- client secret ===> select ===> Dont generate a client secret
 - Advanced app client setting leave as default
 - Attribute read and write permission leave as default
 
@@ -74,3 +74,42 @@ Videos.
 
 
 
+
+## Homework Challenges
+
+### 1. [Medium] Decouple the JWT verify from the application code by writing a  Flask Middleware
+
+
+
+
+### 2. [Hard] Decouple the JWT verify by implementing a Container Sidecar pattern using AWS’s official Aws-jwt-verify.js library
+
+
+
+
+### 3. [Hard] Decouple the JWT verify process by using Envoy as a sidecar https://www.envoyproxy.io/
+
+
+
+
+### 4. [Hard]  Implement a IdP login eg. Login with Amazon or Facebook or Apple.
+
+
+
+
+### 5. [Easy] Implement MFA that send an SMS (text message), warning this has spend, investigate spend before considering, text messages are not eligible for AWS Credits
+
+
+
+
+## Knowledge Challenges
+
+- Security Quiz - Submitted
+- Pricing Quiz - Submitted
+
+
+## Cloud Technical Essays
+
+**1.** 
+
+**2.** 
