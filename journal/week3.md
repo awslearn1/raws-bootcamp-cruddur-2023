@@ -1,5 +1,11 @@
 # Week 3 — Decentralized Authentication
 
+Decentralized authentication is a newer concept where users can gain access to online services using verifiable credentials. Say you wanted to access an online banking service. Instead of submitting ID documents, you could submit a Verifiable Credential from a government body to prove your identity.
+
+This removes the need for the bank to request and store your information before granting you access. And you won’t need an account to login in the future since the service provider can issue a Verifiable Credential for ongoing verification. Logging into the site would be as simple as connecting your digital wallet!
+
+Decentralized authentication is a method of authentication that relies on a distributed network of nodes or peers to verify user identities, rather than a centralized authority. Decentralized authentication systems are based on blockchain technology and provide greater security, privacy, and control to users over their personal information and online identities.
+
 
 # Homework Review
 
