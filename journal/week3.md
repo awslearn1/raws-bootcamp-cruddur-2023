@@ -37,7 +37,7 @@ Videos.
 
 - Configure sign-in experience
 - Authentication Providers ===> Cognito user pool
-- Cognito user pool sign-in-options ===> email 
+- Cognito user pool sign-in-options ===> name, email 
 - User name requirements ===> leave blank
 - next
 
@@ -84,6 +84,8 @@ Videos.
 ### 2. Install AWS Amplify
 
 **AWS Amplify** is a development platform that helps developers build web and mobile applications using AWS services. Amplify provides a set of libraries, UI components, and tools that make it easier to integrate with AWS services, including Cognito for authentication. Thus developers can create applications that give users more control over their personal data and online identities, while still leveraging the power and scalability of AWS services.
+
+- [Authentication with Amplify](https://docs.amplify.aws/lib/auth/getting-started/q/platform/js/)
 
 - cd into frontend-react-js
 - This command will add aws-amplify to frontend-react-js/package.json file 
@@ -146,14 +148,20 @@ Amplify.configure({
 
 ### 4. Conditionally show components based on logged in or logged out
 
-**frontend-react-js/src/pages/HomeFeedPage.js**
+### frontend-react-js/src/pages/HomeFeedPage.js
 
 ```
 import { Auth } from 'aws-amplify';
 
-// set a state (Already Done)
+// the code is Already there
+// set a state 
 const [user, setUser] = React.useState(null);
 
+// Comment out now
+// import Cookies from 'js-cookie'
+
+// remove the one from old - const checkAuth = async () => {
+// copy and paste from below
 // check if we are authenicated
 const checkAuth = async () => {
   Auth.currentAuthenticatedUser({
@@ -174,11 +182,168 @@ const checkAuth = async () => {
   .catch((err) => console.log(err));
 };
 
-// check when the page loads if we are authenicated (Already Done)
+// the code is Already there
+// check when the page loads if we are authenicated 
 React.useEffect(()=>{
   loadData();
   checkAuth();
 }, [])
+```
+
+- We'll want to pass user to the following components
+
+```
+// the code is Already there
+<DesktopNavigation user={user} active={'home'} setPopped={setPopped} />
+<DesktopSidebar user={user} />
+```
+
+### frontend-react-js/src/components/DesktopNavigation.js
+
+- We'll rewrite **DesktopNavigation.js** so that it it conditionally shows links in the left hand column on whether you are logged in or not.
+- Notice we are passing the user to ProfileInfo
+- The code was already there, showing it here to notice that we are passing the user to ProfileInfo
+- DO NOT COPY and PASTE THIS CODE
+
+```
+import './DesktopNavigation.css';
+import {ReactComponent as Logo} from './svg/logo.svg';
+import DesktopNavigationLink from '../components/DesktopNavigationLink';
+import CrudButton from '../components/CrudButton';
+import ProfileInfo from '../components/ProfileInfo';
+
+export default function DesktopNavigation(props) {
+
+  let button;
+  let profile;
+  let notificationsLink;
+  let messagesLink;
+  let profileLink;
+  if (props.user) {
+    button = <CrudButton setPopped={props.setPopped} />;
+    profile = <ProfileInfo user={props.user} />;
+    notificationsLink = <DesktopNavigationLink 
+      url="/notifications" 
+      name="Notifications" 
+      handle="notifications" 
+      active={props.active} />;
+    messagesLink = <DesktopNavigationLink 
+      url="/messages"
+      name="Messages"
+      handle="messages" 
+      active={props.active} />
+    profileLink = <DesktopNavigationLink 
+      url="/@andrewbrown" 
+      name="Profile"
+      handle="profile"
+      active={props.active} />
+  }
+
+  return (
+    <nav>
+      <Logo className='logo' />
+      <DesktopNavigationLink url="/" 
+        name="Home"
+        handle="home"
+        active={props.active} />
+      {notificationsLink}
+      {messagesLink}
+      {profileLink}
+      <DesktopNavigationLink url="/#" 
+        name="More" 
+        handle="more"
+        active={props.active} />
+      {button}
+      {profile}
+    </nav>
+  );
+}
+```
+
+### frontend-react-js/src/components/ProfileInfo.js
+
+// remove Cookies from "js-cookie and replace with code below
+import { Auth } from 'aws-amplify';
+
+const signOut = async () => {
+  try {
+      await Auth.signOut({ global: true });
+      window.location.href = "/"
+  } catch (error) {
+      console.log('error signing out: ', error);
+  }
+}
+
+
+### frontend-react-js/src/components/DesktopSidebar.js
+
+- Rewrote DesktopSidebar.js it conditionally shows components in case you are logged in or not.
+
+- Remove this code
+```
+let trending;
+  if (props.user) {
+    trending = <TrendingSection trendings={trendings} />
+  }
+
+  let suggested;
+  if (props.user) {
+    suggested = <SuggestedUsersSection users={users} />
+  }
+  let join;
+  if (props.user) {
+  } else {
+    join = <JoinSection />
+  }
+```
+
+- Copy and paste this code
+```
+let trending;
+let suggested;
+let join;
+if (props.user) {
+    trending = <TrendingSection trendings={trendings} />
+    suggested = <SuggestedUsersSection users={users} />
+} else {
+    join = <JoinSection />
+}
+```
+
+### 5. Set API Calls to Amazon Coginto for Signin, Signup, Recovery and Forgot Password Page
+
+- [Sign up, Sign in & Sign out](https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js/)
+
+### frontend-react-js/src/pages/SigninPage.js ===> Signin Page
+
+- // Remove now
+- // import Cookies from 'js-cookie'
+- And copy and paste it from below
+
+```
+// replace cookies with auth from aws-amplify
+import { Auth } from 'aws-amplify';
+
+// Already there
+// const [cognitoErrors, setCognitoErrors] = React.useState('');
+
+const onsubmit = async (event) => {
+  setErrors('')
+  event.preventDefault();
+    Auth.signIn(email, password)
+      .then(user => {
+        console.log('user',user)
+        localStorage.setItem("access_token", user.signInUserSession.accessToken.jwtToken)
+        window.location.href = "/"
+      })
+      .catch(err => {
+          if (error.code == 'UserNotConfirmedException') {
+      window.location.href = "/confirm"
+      }
+    setErrors(error.message)
+  });
+  return false
+}
 ```
 
 
