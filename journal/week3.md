@@ -347,13 +347,13 @@ const onsubmit = async (event) => {
 }
 ```
 
-
+[commit link](https://github.com/awsmine/aws-bootcamp-cruddur-2023/commit/2966ec9b6bbae4f265881b347e40c1d254edac77)
 
 
 
 ## Homework Challenges
 
-### 1. [Medium] Decouple the JWT verify from the application code by writing a  Flask Middleware
+### 1. [Medium] Decouple the JWT verify from the application code by writing a Flask Middleware
 
 
 
