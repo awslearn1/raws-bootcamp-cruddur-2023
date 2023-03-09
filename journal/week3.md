@@ -262,6 +262,7 @@ export default function DesktopNavigation(props) {
 
 ### frontend-react-js/src/components/ProfileInfo.js
 
+```
 // remove Cookies from "js-cookie and replace with code below
 import { Auth } from 'aws-amplify';
 
@@ -273,7 +274,7 @@ const signOut = async () => {
       console.log('error signing out: ', error);
   }
 }
-
+```
 
 ### frontend-react-js/src/components/DesktopSidebar.js
 
