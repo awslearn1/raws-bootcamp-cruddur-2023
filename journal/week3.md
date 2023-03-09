@@ -19,12 +19,14 @@ Videos.
 
 ## Videos
 
-- [Week 3 - AWS Cloud Project Bootcamp Decentralized Authenication -  Setup Cognito User Pool, Implement Custom Signin Page](https://www.youtube.com/watch?v=9obl7rVgzJw&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=40))
-- [Week 3 - Cognito Custom Pages, Implement Custom Signup Page, Implement Custom Confirmation Page, Implement Custom Recovery Page](https://www.youtube.com/watch?v=T4X4yIzejTc&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=42)
+- [Week 3 - AWS Cloud Project Bootcamp Decentralized Authenication -  Setup Cognito User Pool, Implement Signin Page](https://www.youtube.com/watch?v=9obl7rVgzJw&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=40)
+- [Week 3 - Cognito Custom Pages, Implement Signin Page, Signup Page, Confirmation Page, Recovery Page](https://www.youtube.com/watch?v=T4X4yIzejTc&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=41)
 - [Week 3 Congito JWT Server side Verify](https://www.youtube.com/watch?v=d079jccoG-M&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=42)
 - [Week 3 - Exploring JWTs](https://www.youtube.com/watch?v=nJjbI4BbasU&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=43)
+- [Week 3 Improving UI Contrast and Implementing CSS Variables for Theming](https://www.youtube.com/watch?v=m9V4SmJWoJU&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=44)
+- 
 
-## 1. Week 3 - AWS Cloud Project Bootcamp Decentralized Authenication -  Setup Cognito User Pool, Implement Custom Signin Page
+## 1. Week 3 - AWS Cloud Project Bootcamp Decentralized Authenication -  Setup Cognito User Pool, Implement Signin Page
 
 - [Amazon Cognito user pools[(https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html)
 
@@ -37,7 +39,7 @@ Videos.
 
 - Configure sign-in experience
 - Authentication Providers ===> Cognito user pool
-- Cognito user pool sign-in-options ===> name, email 
+- Cognito user pool sign-in-options ===> **email**
 - User name requirements ===> leave blank
 - next
 
@@ -262,8 +264,9 @@ export default function DesktopNavigation(props) {
 
 ### frontend-react-js/src/components/ProfileInfo.js
 
+- remove Cookies from "js-cookie and old const signOut code and replace with code below
+
 ```
-// remove Cookies from "js-cookie and replace with code below
 import { Auth } from 'aws-amplify';
 
 const signOut = async () => {
@@ -311,15 +314,11 @@ if (props.user) {
 }
 ```
 
-### 5. Set API Calls to Amazon Coginto for Signin, Signup, Recovery and Forgot Password Page
+### 5. Set API Calls to Amazon Coginto for Signin page
 
 - [Sign up, Sign in & Sign out](https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js/)
-
-### frontend-react-js/src/pages/SigninPage.js ===> Signin Page
-
-- // Remove now
-- // import Cookies from 'js-cookie'
-- And copy and paste it from below
+- **frontend-react-js/src/pages/SigninPage.js**
+- remove cookies from "js-cookie and old const onsubmit Signin code and replace with code below
 
 ```
 // replace cookies with auth from aws-amplify
@@ -348,6 +347,147 @@ const onsubmit = async (event) => {
 ```
 
 [commit link](https://github.com/awsmine/aws-bootcamp-cruddur-2023/commit/2966ec9b6bbae4f265881b347e40c1d254edac77)
+
+- **docker compose up**
+
+```
+docker compose up
+```
+
+- Open up front end URL - https://3000-awsmine-awsbootcampcrud-aqywnrr242a.ws-us89b.gitpod.io
+
+- Sign into your Cruddur account with email / password
+- Got an error when authenticating - blocled by content for cognito user
+- [week-3-1-signin-page-error]()
+
+- Run this command to solve the issue
+
+```
+aws cognito-idp admin-set-user-password --username bobby --password Test1234! --user-pool-id us-east-1_jU5dTPcnI --permanent
+```
+
+```
+docker compose up
+```
+- Open up front end URL - https://3000-awsmine-awsbootcampcrud-aqywnrr242a.ws-us89b.gitpod.io
+- Sign into your Cruddur account with email / password
+- [week-3-2-signin-page-My Name-handle]()
+
+**if you want to see the user Bobby with the handle bobby
+
+- Edituser ===> Required attributes ===> enter name - Bobby ===> preferred_username - bobby ===> Save changes
+
+```
+docker compose up
+```
+- Open up front end URL - https://3000-awsmine-awsbootcampcrud-aqywnrr242a.ws-us89b.gitpod.io
+- Sign into your Cruddur account with email / password
+- [week-3-3-signin-page-name-Bobby-handle-bobby]()
+
+
+
+### 6. Set API Calls to Amazon Cognito for Signup and Confirmation page
+
+- delete the user **bobby*
+
+**Signup Page**
+
+- **frontend-react-js/src/pages/SignupPage.js**
+- Manually we should not create users. We will now create a signup page so that users can automatically signup 
+- remove cookies from "js-cookie and old const onsubmit Signup code and replace with code below
+
+```
+// replace cookies with auth from aws-amplify
+import { Auth } from 'aws-amplify';
+
+// Already there
+//const [cognitoErrors, setCognitoErrors] = React.useState('');
+
+  const onsubmit = async (event) => {
+    event.preventDefault();
+    setErrors('')
+    console.log('username',username)
+    console.log('email',email)
+    console.log('name',name)
+    try {
+      const { user } = await Auth.signUp({
+        username: email,
+        password: password,
+        attributes: {
+          name: name,
+          email: email,
+          preferred_username: username,
+        },
+        autoSignIn: { // optional - enables auto sign in after user is confirmed
+          enabled: true,
+        }
+      });
+      console.log(user);
+      window.location.href = `/confirm?email=${email}`
+    } catch (error) {
+        console.log(error);
+        setErrors(error.message)
+    }
+    return false
+  }
+```
+
+**Confirmation page**
+
+- **frontend-react-js/src/pages/ConfirmationPage.js**
+- We will now create a Confirmation page so that users will get the confirmation code for Signup 
+- remove cookies from "js-cookie and old const resend_code and old const onsubmit code and replace with code below
+
+```
+// Removed old cookies method for Auth.
+import { Auth } from 'aws-amplify';
+
+const resend_code = async (event) => {
+    setErrors('')
+    try {
+      await Auth.resendSignUp(email);
+      console.log('code resent successfully');
+      setCodeSent(true)
+    } catch (err) {
+      // does not return a code
+      // does cognito always return english
+      // for this to be an okay match?
+      console.log(err)
+      if (err.message == 'Username cannot be empty'){
+        setErrors("You need to provide an email in order to send Resend Activiation Code")   
+      } else if (err.message == "Username/client id combination not found."){
+        setErrors("Email is invalid or cannot be found.")   
+      }
+    }
+}
+
+const onsubmit = async (event) => {
+    event.preventDefault();
+    setErrors('')
+    try {
+      await Auth.confirmSignUp(email, code);
+      window.location.href = "/"
+      console.log("hey, your account is confirmed now go to the signin page and log in to see your home feedback.")
+    } catch (error) {
+      setErrors(error.message)
+    }
+    return false
+  }
+```
+
+
+
+
+### 7. Set API Calls to Amazon Cognito for Recovery page
+
+
+
+
+
+
+### 8. Set API Calls to Amazon Cognito for Forgot Password Page
+
+
 
 
 
