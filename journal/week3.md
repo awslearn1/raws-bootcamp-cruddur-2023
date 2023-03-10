@@ -24,6 +24,8 @@ Videos.
 - [Week 3 - Cognito JWT Server side Verify](https://www.youtube.com/watch?v=d079jccoG-M&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=42)
 - [Week 3 - Exploring JWTs](https://www.youtube.com/watch?v=nJjbI4BbasU&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=43)
 - [Week 3 - Improving UI Contrast and Implementing CSS Variables for Theming](https://www.youtube.com/watch?v=m9V4SmJWoJU&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=44)
+- [week 3 - Amazon Cognito Security Best Practices](https://www.youtube.com/watch?v=tEJIeII66pY&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=40)
+- [week 4 - Securing Your Amazon RDS Postgres Database](https://www.youtube.com/watch?v=UourWxz7iQg&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=45)
 
 
 
@@ -487,10 +489,10 @@ import { Auth } from 'aws-amplify';
 
 const onsubmit_send_code = async (event) => {
   event.preventDefault();
-  setCognitoErrors('')
+  setErrors('')
   Auth.forgotPassword(username)
   .then((data) => setFormState('confirm_code') )
-  .catch((err) => setCognitoErrors(err.message) );
+  .catch((err) => setErrors(err.message) );
   return false
 }
 
@@ -502,7 +504,7 @@ const onsubmit_send_code = async (event) => {
       .then((data) => setFormState('success'))
       .catch((err) => setErrors(err.message) );
     } else {
-      setCognitoErrors('Passwords do not match')
+      setErrors('Passwords do not match')
     }
     return false
   }
@@ -515,24 +517,17 @@ docker compose up
 ```
 
 - Open up front end URL - https://3000-awsmine-awsbootcampcrud-d9b4ronvag8.ws-us89b.gitpod.io/
+- [week-3-1-recovery-page-orig]()
 - Signin ===> Click Forgot password
-- Recover password
-
-[PHOTO]()
-
+- [week-3-2-recover-password]()
 - Check Reset  Code from email
+- [week-3-3-Recover-verification-code]()
+- [week-3-4-Recover-New-password]()
+- [week-3-5-Recover-New-password-blank screen-successful]()
+- Now signin with new password
+- [week-3-6-Recover-New-password-SUCCESSFUL]()
 
-[PHOTO 2]()
-
-- Recover your password
-
-- [PHOTO 3 SUCCESSFUL]()
-
-- Now signin
-
-- [PHOTO 4]()
-
-- [commit link - implement recover password](https://github.com/awsmine/aws-bootcamp-cruddur-2023/commit/6bed4c8737aaa011df1c4c1abd2954bfa713f138)
+- [commit link - implement recover password](https://github.com/awsmine/aws-bootcamp-cruddur-2023/commit/d31904659c14e4c72ecd19d6253fec18e071a836)
 
 ## 3. Week 3 - Cognito JWT Server side Verify - Backend implementation of Cognito Authenticating Server Side
 
