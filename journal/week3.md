@@ -21,10 +21,11 @@ Videos.
 
 - [Week 3 - AWS Cloud Project Bootcamp Decentralized Authenication -  Setup Cognito User Pool, Implement Signin Page](https://www.youtube.com/watch?v=9obl7rVgzJw&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=40)
 - [Week 3 - Cognito Custom Pages, Implement Signin Page, Signup Page, Confirmation Page, Recovery Page](https://www.youtube.com/watch?v=T4X4yIzejTc&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=41)
-- [Week 3 Congito JWT Server side Verify](https://www.youtube.com/watch?v=d079jccoG-M&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=42)
+- [Week 3 - Cognito JWT Server side Verify](https://www.youtube.com/watch?v=d079jccoG-M&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=42)
 - [Week 3 - Exploring JWTs](https://www.youtube.com/watch?v=nJjbI4BbasU&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=43)
-- [Week 3 Improving UI Contrast and Implementing CSS Variables for Theming](https://www.youtube.com/watch?v=m9V4SmJWoJU&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=44)
-- 
+- [Week 3 - Improving UI Contrast and Implementing CSS Variables for Theming](https://www.youtube.com/watch?v=m9V4SmJWoJU&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=44)
+
+
 
 ## 1. Week 3 - AWS Cloud Project Bootcamp Decentralized Authenication -  Setup Cognito User Pool, Implement Signin Page
 
@@ -105,11 +106,6 @@ npm i aws-amplify --save
       REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
       REACT_APP_AWS_USER_POOLS_ID: "<get from AWS Console>"
       REACT_APP_CLIENT_ID: "<get from AWS Console, App Intergration tab>"
-      
-REACT_APP_AWS_PROJECT_REGION: "${AWS_DEFAULT_REGION}"
-REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
-REACT_APP_AWS_USER_POOLS_ID: "us-east-1_<Enter user pool ID from AWS Console>"
-REACT_APP_CLIENT_ID: "<enter AWS App integration tab - App client and analytics CLIENT ID>"
 ```
 - hook up our cognito pool to our code in the frontend-react-js/src/App.js
 
@@ -125,25 +121,9 @@ Amplify.configure({
   Auth: {
     // We are not using an Identity Pool
     // identityPoolId: process.env.REACT_APP_IDENTITY_POOL_ID, // REQUIRED - Amazon Cognito Identity Pool ID
-    region: process.env.REACT_AWS_PROJECT_REGION,           // REQUIRED - Amazon Cognito Region
-    userPoolId: process.env.REACT_APP_AWS_USER_POOLS_ID,         // OPTIONAL - Amazon Cognito User Pool ID
-    userPoolWebClientId: process.env.REACT_APP_CLIENT_ID,   // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
-  }
-});
-
-
-Amplify.configure({
-  "AWS_PROJECT_REGION": process.env.REACT_APP_AWS_PROJECT_REGION,
-  "aws_cognito_region": process.env.REACT_APP_AWS_COGNITO_REGION,
-  "aws_user_pools_id": process.env.REACT_APP_AWS_USER_POOLS_ID,
-  "aws_user_pools_web_client_id": process.env.REACT_APP_CLIENT_ID,
-  "oauth": {}, // (optional) - Hosted UI configuration
-  Auth: {
-    // We are not using an Identity Pool
-    // identityPoolId: process.env.REACT_APP_IDENTITY_POOL_ID, // REQUIRED - Amazon Cognito Identity Pool ID
-    region: process.env.REACT_APP_AWS_PROJECT_REGION,           // REQUIRED - Amazon Cognito Region
-    userPoolId: process.env.REACT_APP_AWS_USER_POOLS_ID,         // OPTIONAL - Amazon Cognito User Pool ID
-    userPoolWebClientId: process.env.REACT_APP_CLIENT_ID,   // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
+    region: process.env.REACT_AWS_PROJECT_REGION,              // REQUIRED - Amazon Cognito Region
+    userPoolId: process.env.REACT_APP_AWS_USER_POOLS_ID,       // OPTIONAL - Amazon Cognito User Pool ID
+    userPoolWebClientId: process.env.REACT_APP_CLIENT_ID,      // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
   }
 });
 ```
@@ -314,7 +294,9 @@ if (props.user) {
 }
 ```
 
-### 5. Set API Calls to Amazon Coginto for Signin page
+## 2. Week 3 - Cognito Custom Pages, Implement Signin Page, Signup Page, Confirmation Page, Recovery Page
+
+### 1. Set API Calls to Amazon Cognito for Signin page
 
 - [Sign up, Sign in & Sign out](https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js/)
 - **frontend-react-js/src/pages/SigninPage.js**
@@ -346,7 +328,7 @@ const onsubmit = async (event) => {
 }
 ```
 
-[commit link](https://github.com/awsmine/aws-bootcamp-cruddur-2023/commit/2966ec9b6bbae4f265881b347e40c1d254edac77)
+- [commit link - implement cognito](https://github.com/awsmine/aws-bootcamp-cruddur-2023/commit/2966ec9b6bbae4f265881b347e40c1d254edac77)
 
 - **docker compose up**
 
@@ -373,7 +355,7 @@ docker compose up
 - Sign into your Cruddur account with email / password
 - [week-3-2-signin-page-My Name-handle]()
 
-**if you want to see the user Bobby with the handle bobby
+**if you want to see the user Bobby with the handle bobby**
 
 - Edituser ===> Required attributes ===> enter name - Bobby ===> preferred_username - bobby ===> Save changes
 
@@ -384,11 +366,12 @@ docker compose up
 - Sign into your Cruddur account with email / password
 - [week-3-3-signin-page-name-Bobby-handle-bobby]()
 
+- [commit link - implement signin](https://github.com/awsmine/aws-bootcamp-cruddur-2023/commit/f74715ba1c2304ffa18c9c3bb77b62997be92c28)
 
-
-### 6. Set API Calls to Amazon Cognito for Signup and Confirmation page
+### 2. Set API Calls to Amazon Cognito for Signup and Confirmation page
 
 - delete the user **bobby*
+- we are to going to create a user from the Signup page
 
 **Signup Page**
 
@@ -403,7 +386,7 @@ import { Auth } from 'aws-amplify';
 // Already there
 //const [cognitoErrors, setCognitoErrors] = React.useState('');
 
-  const onsubmit = async (event) => {
+const onsubmit = async (event) => {
     event.preventDefault();
     setErrors('')
     console.log('username',username)
@@ -459,7 +442,7 @@ const resend_code = async (event) => {
         setErrors("Email is invalid or cannot be found.")   
       }
     }
-}
+  }
 
 const onsubmit = async (event) => {
     event.preventDefault();
@@ -467,27 +450,341 @@ const onsubmit = async (event) => {
     try {
       await Auth.confirmSignUp(email, code);
       window.location.href = "/"
-      console.log("hey, your account is confirmed now go to the signin page and log in to see your home feedback.")
     } catch (error) {
       setErrors(error.message)
     }
     return false
   }
 ```
+**docker compose up**
+
+```
+docker compose up
+```
+
+- Open up front end URL - https://3000-awsmine-awsbootcampcrud-aqywnrr242a.ws-us89b.gitpod.io
+- Join Now for Signup with a user 
+- Name - Revathi Joshi
+- Email - your email
+- username - joshi
+- Password - Test1234!
+- [week-3-0-signup-user-from aws-console]()
+- [week-3-1-signup-confirm-your-email]()
+- Get the confirmation code from your eamil
+- [week-3-2-confirm-your-email-confirmation-code]()
+- [week-3-3-signup-user-Signin-to-Cruddur-account]()
+- [week-3-4-signup-user-Signin-to-Cruddur-account-SUCCESSFUL]()
+- [commit link - integrate signup and confirmation pages](https://github.com/awsmine/aws-bootcamp-cruddur-2023/commit/6ddecbe2aa39a205640e83b1db46334321b49aa5)
 
 
+### 3. Set API Calls to Amazon Cognito for Recovery page - for Forgot Password Page
+
+- **frontend-react-js/src/pages/RecoverPage.js**
+- remove cookies from "js-cookie and old const onsubmit_send_code and old const onsubmit_confirm_code and replace with code below
+
+```
+import { Auth } from 'aws-amplify';
+
+const onsubmit_send_code = async (event) => {
+  event.preventDefault();
+  setCognitoErrors('')
+  Auth.forgotPassword(username)
+  .then((data) => setFormState('confirm_code') )
+  .catch((err) => setCognitoErrors(err.message) );
+  return false
+}
+
+ const onsubmit_confirm_code = async (event) => {
+    event.preventDefault();
+    setErrors('')
+    if (password == passwordAgain){
+      Auth.forgotPasswordSubmit(username, code, password)
+      .then((data) => setFormState('success'))
+      .catch((err) => setErrors(err.message) );
+    } else {
+      setCognitoErrors('Passwords do not match')
+    }
+    return false
+  }
+```
+
+**docker compose up**
+
+```
+docker compose up
+```
+
+- Open up front end URL - https://3000-awsmine-awsbootcampcrud-d9b4ronvag8.ws-us89b.gitpod.io/
+- Signin ===> Click Forgot password
+- Recover password
+
+[PHOTO]()
+
+- Check Reset  Code from email
+
+[PHOTO 2]()
+
+- Recover your password
+
+- [PHOTO 3 SUCCESSFUL]()
+
+- Now signin
+
+- [PHOTO 4]()
+
+- [commit link - implement recover password](https://github.com/awsmine/aws-bootcamp-cruddur-2023/commit/6bed4c8737aaa011df1c4c1abd2954bfa713f138)
+
+## 3. Week 3 - Cognito JWT Server side Verify - Backend implementation of Cognito Authenticating Server Side
+
+**1. frontend-react-js/src/pages/HomeFeedPage.js**
+
+- Add in the `HomeFeedPage.js` a header to pass along the access token (frontend-react-js)
+
+```
+headers: {
+    Authorization: `Bearer ${localStorage.getItem("access_token")}`
+  },
+```
+
+**2. Update backend-flask app.py to allow headers from the frontend for Authorization**
+
+**cd into backend-flask/app.py**
+
+```
+import os
+import sys # not used in cognito, tried to log with it but didn't work in the video
+
+cors = CORS(
+  app, 
+  resources={r"/api/*": {"origins": origins}},
+  headers=['Content-Type', 'Authorization'], 
+  expose_headers='Authorization',
+  methods="OPTIONS,GET,HEAD,POST"
+)
+```
+
+**3. Adding Token Verification ===> verify JWTs obtained from an Amazon Cognito user pool and extract information from it**
+
+**backend-flask/lib/cognito_jwt_token.py**
+
+- backend-flask/lib - Create a folder name lib on the backend-flask directory 
+- backend-flask/lib/cognito_jwt_token.py - Create a file inside cognito_jwt_token.py 
+- add the following code
+
+```
+import time
+import requests
+from jose import jwk, jwt
+from jose.exceptions import JOSEError
+from jose.utils import base64url_decode
+
+class FlaskAWSCognitoError(Exception):
+  pass
+
+class TokenVerifyError(Exception):
+  pass
+
+def extract_access_token(request_headers):
+    access_token = None
+    auth_header = request_headers.get("Authorization")
+    if auth_header and " " in auth_header:
+        _, access_token = auth_header.split()
+    return access_token
+
+class CognitoJwtToken:
+    def __init__(self, user_pool_id, user_pool_client_id, region, request_client=None):
+        self.region = region
+        if not self.region:
+            raise FlaskAWSCognitoError("No AWS region provided")
+        self.user_pool_id = user_pool_id
+        self.user_pool_client_id = user_pool_client_id
+        self.claims = None
+        if not request_client:
+            self.request_client = requests.get
+        else:
+            self.request_client = request_client
+        self._load_jwk_keys()
 
 
-### 7. Set API Calls to Amazon Cognito for Recovery page
+    def _load_jwk_keys(self):
+        keys_url = f"https://cognito-idp.{self.region}.amazonaws.com/{self.user_pool_id}/.well-known/jwks.json"
+        try:
+            response = self.request_client(keys_url)
+            self.jwk_keys = response.json()["keys"]
+        except requests.exceptions.RequestException as e:
+            raise FlaskAWSCognitoError(str(e)) from e
 
+    @staticmethod
+    def _extract_headers(token):
+        try:
+            headers = jwt.get_unverified_headers(token)
+            return headers
+        except JOSEError as e:
+            raise TokenVerifyError(str(e)) from e
 
+    def _find_pkey(self, headers):
+        kid = headers["kid"]
+        # search for the kid in the downloaded public keys
+        key_index = -1
+        for i in range(len(self.jwk_keys)):
+            if kid == self.jwk_keys[i]["kid"]:
+                key_index = i
+                break
+        if key_index == -1:
+            raise TokenVerifyError("Public key not found in jwks.json")
+        return self.jwk_keys[key_index]
 
+    @staticmethod
+    def _verify_signature(token, pkey_data):
+        try:
+            # construct the public key
+            public_key = jwk.construct(pkey_data)
+        except JOSEError as e:
+            raise TokenVerifyError(str(e)) from e
+        # get the last two sections of the token,
+        # message and signature (encoded in base64)
+        message, encoded_signature = str(token).rsplit(".", 1)
+        # decode the signature
+        decoded_signature = base64url_decode(encoded_signature.encode("utf-8"))
+        # verify the signature
+        if not public_key.verify(message.encode("utf8"), decoded_signature):
+            raise TokenVerifyError("Signature verification failed")
 
+    @staticmethod
+    def _extract_claims(token):
+        try:
+            claims = jwt.get_unverified_claims(token)
+            return claims
+        except JOSEError as e:
+            raise TokenVerifyError(str(e)) from e
 
+    @staticmethod
+    def _check_expiration(claims, current_time):
+        if not current_time:
+            current_time = time.time()
+        if current_time > claims["exp"]:
+            raise TokenVerifyError("Token is expired")  # probably another exception
 
-### 8. Set API Calls to Amazon Cognito for Forgot Password Page
+    def _check_audience(self, claims):
+        # and the Audience  (use claims['client_id'] if verifying an access token)
+        audience = claims["aud"] if "aud" in claims else claims["client_id"]
+        if audience != self.user_pool_client_id:
+            raise TokenVerifyError("Token was not issued for this audience")
 
+    def verify(self, token, current_time=None):
+        """ https://github.com/awslabs/aws-support-tools/blob/master/Cognito/decode-verify-jwt/decode-verify-jwt.py """
+        if not token:
+            raise TokenVerifyError("No token provided")
 
+        headers = self._extract_headers(token)
+        pkey_data = self._find_pkey(headers)
+        self._verify_signature(token, pkey_data)
+
+        claims = self._extract_claims(token)
+        self._check_expiration(claims, current_time)
+        self._check_audience(claims)
+
+        self.claims = claims 
+        return claims
+```
+
+**4. Update /backend-flask/requirements.txt**
+
+```
+Flask-AWSCognito
+```
+
+**5. Run command in cli to update the dependencies**
+
+```
+pip install -r requirements.txt
+```
+
+**6. update the env vars for the backend to implement verification for incognito**
+
+**docker-compose.yml**
+
+```
+AWS_COGNITO_USER_POOL_ID: "us-east-1_FpcgxtNfc"
+AWS_COGNITO_USER_POOL_CLIENT_ID: "6jbj9dn4cf8oldfrvmm5cg34t9"
+
+```
+
+**7. import cognito_jwt_token into app.py to be used for verification**
+
+**backend-flask/app.py**
+
+```
+from lib.cognito_jwt_token import CognitoJwtToken, extract_access_token, TokenVerifyError
+
+```
+
+**8. allow the env vars to be passed into aws**
+
+**backend-flask/app.py**
+
+```
+# under the flask
+# Incognito AWS ----------
+cognito_jwt_token = CognitoJwtToken(
+  user_pool_id=os.getenv("AWS_COGNITO_USER_POOL_ID"), 
+  user_pool_client_id=os.getenv("AWS_COGNITO_USER_POOL_CLIENT_ID"),
+  region=os.getenv("AWS_DEFAULT_REGION")
+)
+```
+
+**9. update with the following code**
+
+**backend-flask/app.py**
+
+```
+@app.route("/api/activities/home", methods=['GET'])
+@xray_recorder.capture('activities_home')
+def data_home():
+  access_token = extract_access_token(request.headers)
+  try:
+    claims = cognito_jwt_token.verify(access_token)
+    # authenicatied request
+    app.logger.debug("authenicated")
+    app.logger.debug(claims)
+    app.logger.debug(claims['username'])
+    data = HomeActivities.run(cognito_user_id=claims['username'])
+  except TokenVerifyError as e:
+    # unauthenicatied request
+    app.logger.debug(e)
+    app.logger.debug("unauthenicated")
+    data = HomeActivities.run()
+  return data, 200
+```
+
+**10. Add this code for cognito user
+
+**backend-flask/services/home_activities.py**
+```
+def run(cognito_user_id=None):
+
+if cognito_user_id != None:
+  extra_crud = {
+    'uuid': '248959df-3079-4947-b847-9e0892d1bab4',
+    'handle':  'Lore',
+    'message': 'My dear brother, it the humans that are the problem',
+    'created_at': (now - timedelta(hours=1)).isoformat(),
+    'expires_at': (now + timedelta(hours=12)).isoformat(),
+    'likes': 1042,
+    'replies': []
+  }
+  results.insert(0,extra_crud)
+```
+
+- [PHOTO]()
+- 
+**11. Remove the user from local storage on signout from ProfileInfo.js
+
+**frontend-react-js/src/components/ProfileInfo.js **
+
+```
+localStorage.removeItem("access_token")
+```
 
 
 
